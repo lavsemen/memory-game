@@ -1,17 +1,14 @@
 <template>
   <main class="game">
     <div class="game__overlay" v-if="!store.isFinish">
-      <div class="game__input">
-        <label>Количество элементов</label>
-        <input
-          step="2"
-          type="number"
-          max="36"
-          @change="setCountCards"
-          class="game__input"
-          v-model="countCards"
-        />
-      </div>
+      <app-input
+        label="Количество элементов"
+        max="36"
+        step="2"
+        v-model="countCards"
+        @change="setCountCards"
+        :gameIsOn="store.gameIsOn"
+      />
 
       <div class="game__wrapper">
         <app-card
@@ -44,10 +41,11 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch } from "@vue/runtime-core";
 import AppCard from "./components/AppCard.vue";
+import AppInput from "./components/AppInput.vue";
 import { useStore } from "./stores/main-store";
 
 export default defineComponent({
-  components: { AppCard },
+  components: { AppCard, AppInput },
   name: "App",
   setup() {
     const store = useStore();

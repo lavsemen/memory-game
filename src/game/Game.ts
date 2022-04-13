@@ -15,6 +15,7 @@ export default class Game {
       const arrNumbers = this.createNumber();
       arrNumbers.forEach(num => res.push(num));
     }
+    
     return res.sort(() => Math.random() - 0.5)
       .map((num, index) => ({
         id: index,
